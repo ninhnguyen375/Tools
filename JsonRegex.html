@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PA Json Regex</title>
+  </head>
+  <body style="display: flex; align-items: center">
+    <textarea
+      placeholder="intput an object"
+      name=""
+      id="data"
+      cols="30"
+      rows="10"
+      style="width: 40vw; height: 90vh"
+    ></textarea>
+    <button id="submit">-></button>
+    <div id="result" style="width: 40vw; height: 90vh"></div>
+
+    <script src="./index.js"></script>
+    <script>
+      document.getElementById('submit').onclick = render
+      document.getElementById('data').onkeypress = render
+      function render() {
+        const res = toRegexPA(
+          JSON.parse(document.getElementById('data').value) || {},
+        )
+
+        document.getElementById('result').innerText = res
+      }
+    </script>
+  </body>
+</html>

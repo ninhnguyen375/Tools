@@ -3,9 +3,11 @@ function toRegexPA(obj) {
   let result = []
   Object.keys(obj).forEach((key) => {
     if (Array.isArray(obj[key])) {
-      result.push(`"${key}":((\[.*?\]))`)
+      result.push(`"${key}":(?<${key}>\\[.*?\\])`)
+    } else if (obj[key] && !isNaN(obj[key])) {
+      result.push(`"${key}":(?<${key}>\\d)`)
     } else {
-      result.push(`"${key}":(("(?<${key}>[^"]*)")|null|\d)`)
+      result.push(`"${key}":"(?<${key}>[^"]*)"`)
     }
   })
 
@@ -13,15 +15,10 @@ function toRegexPA(obj) {
 
   return '"\\{' + result.join(',') + '"'
 }
-
-const result = toRegexPA({
-  CompanyCode: null,
-  CompanyId: null,
-  CompanyName: null,
-  SignatureCode: 'S1',
-  SignatureName: 'Chữ ký thứ 1',
-  SignerSignatureCode: '430C7366',
-  SignerSignatureId: 'flasher-S1',
-})
-
-document.body.innerText = result
+var a = {
+  Email: 'nguyenvana@yahoo.com',
+  FullName: 'Nguyễn Văn A',
+  Mobile: '',
+  SignerId: 'c4f63cee-5023-438e-ae92-f06887fecacd',
+  SignerSignatures: [],
+}
