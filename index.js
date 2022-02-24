@@ -5,7 +5,7 @@ function toRegexPA(obj) {
     if (Array.isArray(obj[key])) {
       result.push(`"${key}":(?<${key}>\\[.*?\\])`)
     } else if (obj[key] && !isNaN(obj[key])) {
-      result.push(`"${key}":(?<${key}>\\d)`)
+      result.push(`"${key}":(?<${key}>[^"]*)`)
     } else {
       result.push(`"${key}":"(?<${key}>[^"]*)"`)
     }
